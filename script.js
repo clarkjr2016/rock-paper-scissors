@@ -94,11 +94,17 @@ function game() {
         }
     if (playerCount > compCount) {
         console.log("YOU WON BABY!!");
+        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
+    } else if (playerCount == compCount) {
+        console.log("IT'S A TIE!!");
+        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
     }
     else {
-        console.log("SORRY YOU LOSS :(")
+        console.log("SORRY YOU LOST :(");
+        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
     }
-    
+    playerCount = 0;
+    compCount = 0;  
 
 }
 
