@@ -1,6 +1,7 @@
 /* Add some variables here so that you have some "counting" variables in a global scope 
 to refrence in functions.
 */
+
 let playerCount = 0;
 let compCount = 0;
 
@@ -13,6 +14,11 @@ paper.addEventListener("click",() => {playRound(paper)});
 rock.addEventListener("click",() => {playRound(rock)});
 scissors.addEventListener("click",() => {playRound(scissors)});
 // Creates event listeners to play a round using the appropriate playerSelection.
+
+const resultDisplay = document.querySelector("#result-display");
+const scoreDisplay = document.querySelector("#score-display");
+const announcement = document.querySelector("#announcement");
+
 
 
 function computerPlay() {
@@ -38,17 +44,20 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
          if (comp === "Rock") {
              playerCount += 0;
              compCount += 0;
-             console.log(`It's a tie! You both chose ${comp}`)  
+             resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
+             scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
          }
         else if (comp === "Scissors") {
             playerCount += 1;
             compCount += 0;
-            console.log(`You win! ${player} beats ${comp}`);
+            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
         }
         else {
             playerCount += 0;
             compCount += 1;
-            console.log(`You lose! ${comp} beats ${player}`);
+            resultDisplay.innerText = `You lose! ${comp} beats ${player}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
             
         }
 
@@ -57,19 +66,22 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         if (comp === "Scissors") {
             playerCount += 0;
             compCount += 0;
-            console.log(`It's a tie! You both chose ${comp}`)
+            resultDisplay.innerText `It's a tie! You both chose ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
             
         }
        else if (comp === "Paper") {
             playerCount += 1;
             compCount += 0;
-         console.log(`You win! ${player} beats ${comp}`)
+            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
        else {
         playerCount += 0;
         compCount += 1;
-           console.log(`You lose! ${comp} beats ${player}`)   
+        resultDisplay.innerText = `You lose! ${comp} beats ${player}`
+        scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`; 
        }
     };
 
@@ -77,29 +89,48 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
         if (comp === "Paper") {
             playerCount += 0;
             compCount += 0;
-            console.log(`It's a tie! You both chose ${comp}`)
+            resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
             
         }
        else if (comp === "Rock") {
             playerCount += 1;
             compCount += 0;
-           console.log(`You win! ${player} beats ${comp}`)
+            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
        else {
         playerCount += 0;
         compCount += 1;
-           console.log(`You lose! ${comp} beats ${player}`)
+        resultDisplay.innerText = `You lose! ${comp} beats ${player}`;
+        scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
     };
 } 
 
+if (playerCount < 5 || compCount < 5) {
+    if (playerCount > compCount) {
+        announcement.innerText = "YOU WON BABY!!";
+       
+    } else if (playerCount == compCount) {
+        announcement.innerText = "IT'S A TIE!!";
+        
+    }
+    else {
+        announcement.innerText = "SORRY YOU LOST :(";
+    }
+    playerCount = 0;
+    compCount = 0;  
 
-/* function game() {
+
+}
+
+/*function game() {
     for (let i = 0; i < 5; i++) {
 
-        playRound(prompt("Rock Paper or Scissors?"));
+        playRound();
         console.log(`Player score: ${playerCount}`);
         console.log(`Computer score: ${compCount}`);
         }
@@ -117,5 +148,7 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
     playerCount = 0;
     compCount = 0;  
 
-} */
+}*/
+
+
 // hello
