@@ -1,24 +1,107 @@
 /* Add some variables here so that you have some "counting" variables in a global scope 
 to refrence in functions.
 */
-
 let playerCount = 0;
 let compCount = 0;
 
-const rock = document.querySelector("#Rock");
-const paper = document.querySelector("#Paper");
-const scissors = document.querySelector("#Scissors");
-// created three variables for the three different selections
+/* const rock = document.querySelector('#Rock');
+const paper = document.querySelector('#Paper');
+const scissors = document.querySelector('#Scissors');
 
-paper.addEventListener("click",() => {playRound(paper)});
-rock.addEventListener("click",() => {playRound(rock)});
-scissors.addEventListener("click",() => {playRound(scissors)});
-// Creates event listeners to play a round using the appropriate playerSelection.
+*/
+
 
 const resultDisplay = document.querySelector("#result-display");
 const scoreDisplay = document.querySelector("#score-display");
-const announcement = document.querySelector("#announcement");
 
+
+const selections = Array.from(document.querySelectorAll("button"));
+selections.forEach((btn) => btn.addEventListener("click", (event) => {
+    const comp = computerPlay();
+     const playerSelection = event.target.id;
+     
+     if (playerSelection === "Rock") {
+        if (comp === "Rock") {
+            playerCount += 0;
+            compCount += 0;
+           resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
+            scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+        }
+       else if (comp === "Scissors") {
+           playerCount += 1;
+           compCount += 0;
+           resultDisplay.innerText = `You win! ${playerSelection} beats ${comp}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+       }
+       else {
+           playerCount += 0;
+           compCount += 1;
+           resultDisplay.innerText = `You lose! ${comp} beats ${playerSelection}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+           
+       }
+       if (playerCount === 5 || compCount ===5 ) {
+        stopGame();
+      };
+
+    };
+    if (playerSelection === "Scissors") {
+       if (comp === "Scissors") {
+           playerCount += 0;
+           compCount += 0;
+           resultDisplay.innerText =`It's a tie! You both chose ${comp}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+           
+       }
+      else if (comp === "Paper") {
+           playerCount += 1;
+           compCount += 0;
+           resultDisplay.innerText = `You win! ${playerSelection} beats ${comp}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+          
+      }
+      else {
+       playerCount += 0;
+       compCount += 1;
+       resultDisplay.innerText = `You lose! ${comp} beats ${playerSelection}`
+       scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`; 
+      }
+      if (playerCount === 5 || compCount ===5 ) {
+        stopGame();
+      };
+   };
+
+   if (playerSelection === "Paper") {
+       if (comp === "Paper") {
+           playerCount += 0;
+           compCount += 0;
+           resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+           
+       }
+      else if (comp === "Rock") {
+           playerCount += 1;
+           compCount += 0;
+           resultDisplay.innerText = `You win! ${playerSelection} beats ${comp}`;
+           scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+          
+      }
+      else {
+       playerCount += 0;
+       compCount += 1;
+       resultDisplay.innerText = `You lose! ${comp} beats ${playerSelection}`;
+       scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
+          
+      }
+      if (playerCount === 5 || compCount ===5 ) {
+        stopGame();
+      };
+   };
+}
+
+     
+   
+))
 
 
 function computerPlay() {
@@ -32,37 +115,56 @@ function computerPlay() {
     else {
         return "Paper";
     }
-} // Randomly generates a return value of either "Rock", "Paper", "Scissors".
+}
 
-function playRound(playerSelection, computerSelection = computerPlay()) {
-    const player = playerSelection.id; // This represents the id name for whatever is passed into the playerSelection parameter
+
+
+function stopGame() {
+    if (playerCount > compCount) {
+        resultDisplay.innerText = "You Won";
+    } else {
+        resultDisplay.innerText = "You Lost";
+    
+    }
+    scoreDisplay.innerText ="";
+    playerCount = 0;
+    compCount = 0;
+} // this resets the count back to 0 
+
+
+
+
+
+
+/* function playRound(playerSelection, computerSelection = computerPlay()) {
+    const player = playerSelection // This represents the id name for whatever is passed into the playerSelection parameter
     const comp = computerSelection;
     
 
 
-     if (player === "Rock") {
+     if (player.id === "Rock") {
          if (comp === "Rock") {
              playerCount += 0;
              compCount += 0;
-             resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
+            resultDisplay.innerText = `It's a tie! You both chose ${comp}`;
              scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
          }
         else if (comp === "Scissors") {
             playerCount += 1;
             compCount += 0;
-            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            resultDisplay.innerText = `You win! ${player.id} beats ${comp}`;
             scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
         }
         else {
             playerCount += 0;
             compCount += 1;
-            resultDisplay.innerText = `You lose! ${comp} beats ${player}`;
+            resultDisplay.innerText = `You lose! ${comp} beats ${player.id}`;
             scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
             
         }
 
      };
-     if (player === "Scissors") {
+     if (player.id === "Scissors") {
         if (comp === "Scissors") {
             playerCount += 0;
             compCount += 0;
@@ -73,19 +175,19 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
        else if (comp === "Paper") {
             playerCount += 1;
             compCount += 0;
-            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            resultDisplay.innerText = `You win! ${player.id} beats ${comp}`;
             scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
        else {
         playerCount += 0;
         compCount += 1;
-        resultDisplay.innerText = `You lose! ${comp} beats ${player}`
+        resultDisplay.innerText = `You lose! ${comp} beats ${player.id}`
         scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`; 
        }
     };
 
-    if (player === "Paper") {
+    if (player.id === "Paper") {
         if (comp === "Paper") {
             playerCount += 0;
             compCount += 0;
@@ -96,59 +198,20 @@ function playRound(playerSelection, computerSelection = computerPlay()) {
        else if (comp === "Rock") {
             playerCount += 1;
             compCount += 0;
-            resultDisplay.innerText = `You win! ${player} beats ${comp}`;
+            resultDisplay.innerText = `You win! ${player.id} beats ${comp}`;
             scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
        else {
         playerCount += 0;
         compCount += 1;
-        resultDisplay.innerText = `You lose! ${comp} beats ${player}`;
+        resultDisplay.innerText = `You lose! ${comp} beats ${player.id}`;
         scoreDisplay.innerText = `Player Score: ${playerCount} Computer Score: ${compCount}`;
            
        }
     };
-} 
-
-if (playerCount < 5 || compCount < 5) {
-    if (playerCount > compCount) {
-        announcement.innerText = "YOU WON BABY!!";
-       
-    } else if (playerCount == compCount) {
-        announcement.innerText = "IT'S A TIE!!";
-        
-    }
-    else {
-        announcement.innerText = "SORRY YOU LOST :(";
-    }
-    playerCount = 0;
-    compCount = 0;  
+} */
 
 
-}
+// function to generate a computers play
 
-/*function game() {
-    for (let i = 0; i < 5; i++) {
-
-        playRound();
-        console.log(`Player score: ${playerCount}`);
-        console.log(`Computer score: ${compCount}`);
-        }
-    if (playerCount > compCount) {
-        console.log("YOU WON BABY!!");
-        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
-    } else if (playerCount == compCount) {
-        console.log("IT'S A TIE!!");
-        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
-    }
-    else {
-        console.log("SORRY YOU LOST :(");
-        console.log(`Final score - Player = ${playerCount}, Computer = ${compCount}`);
-    }
-    playerCount = 0;
-    compCount = 0;  
-
-}*/
-
-
-// hello

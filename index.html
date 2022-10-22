@@ -14,13 +14,26 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <button id ="Rock">Rock</button>
-        <button id = "Paper">Paper</button>
-        <button id ="Scissors">Scissors</button>
-
+        <h1>Rock Paper Scissors</h1> <!-- heading for the game  -->
+        <div class = "display-container"> 
+            <div class = "img">
+            <img src="pictures/smileyface.png" width = "100px" height = "100px" id = "player-pic" >
+            <h3>Player</h3>
+            </div> <!-- container for player selection-->
+            <div class = "img">
+              <img src ="pictures/Computer.jpg" width = "100px" height ="100px" id = "computer-pic">
+              <h3>Computer</h3>
+            </div> <!-- container for computer selection -->
+        </div>
+        <div class = "buttons-display">
+            <button id = "Rock">Rock</button>
+            <button id = "Paper">Paper</button>
+            <button id = "Scissors">Scissors</button>
+        </div>
         <div id = "result-display"></div>
+        <div id = "announcement"></div>
         <div id ="score-display"></div>
-        <div id ="announcement"></div>
+    
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
